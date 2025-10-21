@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://g5kdx4hqosq6"]
+
+[ext_resource type="PackedScene" uid="uid://dmoidibm3tpis" path="res://ProjetOmega/Prefabs/Player.tscn" id="1_70gsp"]
+[ext_resource type="PackedScene" uid="uid://cm1cw7hgvhp32" path="res://ProjetOmega/Prefabs/Planet.tscn" id="2_11ktj"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_70gsp")]
+position = Vector2(562, 586)
+
+[node name="Planets" type="Node2D" parent="."]
+
+[node name="Planet" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(379, 401)
+
+[node name="Planet2" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(744, 413)
+
+[node name="Planet3" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(388, 171)
+
+[node name="Planet4" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(741, 180)
