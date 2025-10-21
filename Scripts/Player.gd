@@ -5,17 +5,22 @@ class_name Player extends Node2D
 @export var grapple: Line2D
 @export var raycast: RayCast2D
 
-@export var starting_speed: float = 250#150.0
+@export var starting_speed: float = 150.0
 @export var shoot_dist: float = 100.0
 
 var screen_size: Vector2
 var speed: Vector2
+var last_pos: Vector2
 var actual_speed: float
 var radius: float
 
+
+var grabbed_planet: Planet = null
 var aim_vec: Vector2 = Vector2.ZERO
+var rotation_angle: float = 0.0
 var is_free: bool = true
 var can_shoot: bool = true
+var is_clockwise_rot: bool = true
 
 
 func _ready() -> void:
@@ -35,8 +40,14 @@ func _physics_process(delta: float) -> void:
 		global_position += speed * delta
 		rotate_viewfinder()
 	else:
-		pass
+		var dist: float = (grabbed_planet.global_position - global_position).length()
+		var dir: float = -1.0 if is_clockwise_rot else 1.0
+		var omega: float = (actual_speed / dist) * dir
+		rotation_angle += omega * delta
+		global_position = grabbed_planet.global_position + Vector2.RIGHT.rotated(rotation_angle) * dist
+		grapple.points[1] = grabbed_planet.global_position - global_position
 	rectify_position()
+	last_pos = global_position
 
 
 func get_inputs():
@@ -44,7 +55,10 @@ func get_inputs():
 	if aim_vec.length() <= 0.2:
 		aim_vec = Vector2.ZERO
 	if Input.is_action_just_pressed("J1_Grapple"):
-		shoot(Vector2.RIGHT.rotated(arrow.rotation))
+		if is_free:
+			shoot(Vector2.RIGHT.rotated(arrow.rotation))
+		else:
+			pass
 
 
 func rotate_viewfinder():
@@ -69,7 +83,9 @@ func shoot(direction: Vector2):
 	
 	var target: Vector2 = grapple.points[0] + direction * shoot_dist
 	if raycast.is_colliding():
-		target = raycast.get_collision_point() - global_position
+		grabbed_planet = raycast.get_collider().get_parent() as Planet
+		target = grabbed_planet.global_position - global_position
+		is_free = false
 	
 	var shoot_tween: Tween = create_tween()
 	await shoot_tween.tween_method(
@@ -81,3 +97,8 @@ func shoot(direction: Vector2):
 		target,
 		0.1
 		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).finished
+	
+	if is_free:
+		grapple.points[1] = Vector2.ZERO
+		can_shoot = true
+		arrow.visible = true
