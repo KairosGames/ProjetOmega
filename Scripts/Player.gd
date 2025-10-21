@@ -28,6 +28,9 @@ var is_free: bool = true
 var can_shoot: bool = true
 var is_clockwise_rot: bool = true
 
+var test: float
+var test2: float
+
 
 func _ready() -> void:
 	actual_speed = starting_speed
@@ -47,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		free_move(delta)
 		rotate_viewfinder()
 	else:
-		handle_grabbed_distance(delta)
+		handle_grapping(delta)
 		rotate_arround_grabbed_planet(delta)
 	rectify_position()
 	last_pos = global_position
@@ -81,27 +84,32 @@ func rotate_arround_grabbed_planet(delta: float) -> void:
 	grapple.points[1] = grabbed_planet.global_position - global_position
 
 
-func handle_grabbed_distance(delta: float) -> void:
+func handle_grapping(delta: float) -> void:
 	if aim_vec.length() > 0.2:
-		dist_to_planet = (grabbed_planet.global_position - global_position).length()
 		var strength = aim_vec.dot((grabbed_planet.global_position - global_position).normalized())
 		dist_to_planet -= strength * delta * retract_speed
 		if dist_to_planet <= grabbed_planet.radius + radius + min_dist_on_grab:
 			dist_to_planet = grabbed_planet.radius + radius + min_dist_on_grab
 		if dist_to_planet >= shoot_dist:
 			dist_to_planet = shoot_dist
-		actual_speed = min_grab_speed + ((max_grab_speed - min_dist_on_grab) * (1.0 - (dist_to_planet / shoot_dist)))
+	var ratio: float = (dist_to_planet - grabbed_planet.radius - radius - min_dist_on_grab) / (shoot_dist - grabbed_planet.radius - radius - min_dist_on_grab)
+	if ratio < 0 : ratio = 0.0
+	actual_speed = min_grab_speed + ((max_grab_speed - min_grab_speed) * (1.0 - ratio))
 
 
 func rectify_position() -> void:
 	if global_position.x < 0 - radius:
 		global_position.x = screen_size.x + radius
+		break_free()
 	if global_position.x > screen_size.x + radius:
 		global_position.x = 0 - radius
+		break_free()
 	if global_position.y < 0 - radius:
 		global_position.y = screen_size.y + radius
+		break_free()
 	if global_position.y > screen_size.y + radius:
 		global_position.y = 0 - radius
+		break_free()
 
 
 func shoot(aim_dir: Vector2) -> void:
@@ -140,7 +148,8 @@ func set_grab_context(planet_to_player: Vector2) -> void:
 	is_clockwise_rot = true if planet_to_player.cross(speed) < 0 else false
 	first_dist_to_planet = planet_to_player.length()
 	dist_to_planet = first_dist_to_planet
-	var ratio = dist_to_planet / shoot_dist
+	var ratio = (dist_to_planet - grabbed_planet.radius - radius - min_dist_on_grab) / (shoot_dist - grabbed_planet.radius - radius - min_dist_on_grab)
+	if ratio < 0 : ratio = 0.0
 	min_grab_speed = actual_speed - ((1.0 - ratio) * gainable_speed_per_grab)
 	max_grab_speed = actual_speed + (ratio * gainable_speed_per_grab)
 
@@ -152,6 +161,8 @@ func reset_grapple() -> void:
 
 
 func break_free() -> void:
+	if is_free:
+		return
 	var dist = (global_position - grabbed_planet.global_position).normalized()
 	var orth = Vector2(dist.y, -dist.x) if is_clockwise_rot else Vector2(-dist.y, dist.x)
 	speed = orth * actual_speed
