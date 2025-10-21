@@ -19,6 +19,11 @@ arrow = NodePath("Arrow")
 grapple = NodePath("Grapple")
 raycast = NodePath("Arrow/RayCast2D")
 
+[node name="Grapple" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0
+default_color = Color(1, 0.03370842, 0.06473021, 1)
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -38,8 +43,3 @@ collision_mask = 2
 position = Vector2(13, 0)
 rotation = -1.5707964
 mesh = SubResource("PrismMesh_4yxob")
-
-[node name="Grapple" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 0)
-width = 2.0
-default_color = Color(1, 0.03370842, 0.06473021, 1)
