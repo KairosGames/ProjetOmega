@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciwrw6hm7ltg7"]
+
+[ext_resource type="Script" uid="uid://bj6p4rsescdrp" path="res://ProjetOmega/collectibles_manager.gd" id="1_da5nf"]
+
+[node name="CollectiblesManager" type="Node2D"]
+script = ExtResource("1_da5nf")
