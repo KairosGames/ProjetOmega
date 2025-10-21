@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmoidibm3tpis"]
+[gd_scene load_steps=6 format=3 uid="uid://dmoidibm3tpis"]
 
 [ext_resource type="Script" uid="uid://ddou3cs831ci3" path="res://ProjetOmega/Scripts/Player.gd" id="1_4yxob"]
+[ext_resource type="PackedScene" uid="uid://ciwrw6hm7ltg7" path="res://ProjetOmega/Scenes/Items/collectibles_manager.tscn" id="2_gy4l8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2ehm"]
 radius = 8.0
@@ -19,10 +20,12 @@ arrow = NodePath("Arrow")
 grapple = NodePath("Grapple")
 raycast = NodePath("Arrow/RayCast2D")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_u2ehm")
+
+[node name="CollectiblesManager" parent="CharacterBody2D" instance=ExtResource("2_gy4l8")]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 self_modulate = Color(0.2043803, 0.5700107, 0, 1)

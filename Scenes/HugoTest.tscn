@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://dxcjvmrk253yr"]
+[gd_scene load_steps=3 format=3 uid="uid://dxcjvmrk253yr"]
+
+[ext_resource type="PackedScene" uid="uid://dmoidibm3tpis" path="res://ProjetOmega/Prefabs/Player.tscn" id="1_apu1o"]
+[ext_resource type="PackedScene" uid="uid://opnfujk66rk5" path="res://ProjetOmega/Scenes/Collectibles.tscn" id="2_mslcp"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_apu1o")]
+position = Vector2(438, 519)
+
+[node name="Area2D" parent="." instance=ExtResource("2_mslcp")]
+position = Vector2(266, 384)
+scale = Vector2(8.639999, 9.56)
+
+[node name="Area2D2" parent="." instance=ExtResource("2_mslcp")]
+position = Vector2(573, 381)
+scale = Vector2(8.639999, 9.56)
+
+[node name="Area2D3" parent="." instance=ExtResource("2_mslcp")]
+position = Vector2(954, 381)
+scale = Vector2(8.639999, 9.56)
