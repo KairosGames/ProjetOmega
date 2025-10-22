@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://d4e0p6xdakaht" path="res://ProjetOmega/Scripts/Planet.gd" id="1_007c7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_makee"]
-radius = 14.0
+radius = 7.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_makee"]
-radius = 14.0
-height = 28.0
+radius = 7.0
+height = 14.0
 
 [node name="Planet" type="Node2D" node_paths=PackedStringArray("collision_shape")]
 script = ExtResource("1_007c7")
@@ -15,6 +15,7 @@ collision_shape = NodePath("StaticBody2D/CollisionShape2D")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CircleShape2D_makee")

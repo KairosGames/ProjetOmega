@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk0xrcyrw72j2"]
+
+[ext_resource type="Script" uid="uid://0fchau8m2tek" path="res://ProjetOmega/Scripts/Star.gd" id="1_iaoy7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_24md1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_24md1"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_iaoy7"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_rm0l1"]
+size = Vector3(2, 4, 1)
+
+[node name="Star" type="Node2D" node_paths=PackedStringArray("area", "mesh", "cover", "collider")]
+script = ExtResource("1_iaoy7")
+area = NodePath("Area2D")
+mesh = NodePath("MeshInstance2D")
+cover = NodePath("Cover")
+collider = NodePath("Area2D/CollisionShape2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_24md1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_24md1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="MeshInstance2D"]
+self_modulate = Color(0.09019608, 0.09019608, 0.09019608, 1)
+mesh = SubResource("SphereMesh_iaoy7")
+
+[node name="Cover" type="MeshInstance2D" parent="."]
+self_modulate = Color(0.09019608, 0.09019608, 0.09019608, 1)
+position = Vector2(1, 0)
+mesh = SubResource("BoxMesh_rm0l1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,28 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://g5kdx4hqosq6"]
+[gd_scene load_steps=4 format=3 uid="uid://g5kdx4hqosq6"]
 
 [ext_resource type="PackedScene" uid="uid://dmoidibm3tpis" path="res://ProjetOmega/Prefabs/Player.tscn" id="1_70gsp"]
 [ext_resource type="PackedScene" uid="uid://cm1cw7hgvhp32" path="res://ProjetOmega/Prefabs/Planet.tscn" id="2_11ktj"]
+[ext_resource type="PackedScene" uid="uid://dk0xrcyrw72j2" path="res://ProjetOmega/Prefabs/Star.tscn" id="3_iou8o"]
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Player1" parent="." instance=ExtResource("1_70gsp")]
-position = Vector2(301, 373)
+[node name="Players" type="Node2D" parent="."]
 
-[node name="Player2" parent="." instance=ExtResource("1_70gsp")]
-position = Vector2(837, 372)
+[node name="Player1" parent="Players" instance=ExtResource("1_70gsp")]
+position = Vector2(245, 211)
+
+[node name="Player2" parent="Players" instance=ExtResource("1_70gsp")]
+position = Vector2(552, 203)
 id = "J2"
 player_color = Color(2.5027991e-06, 0.6377404, 0.9303968, 1)
 
 [node name="Planets" type="Node2D" parent="."]
 
 [node name="Planet" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(102, 560)
+position = Vector2(485, 162)
 
 [node name="Planet2" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(744, 413)
+position = Vector2(361, 169)
 
 [node name="Planet3" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(388, 171)
+position = Vector2(368, 68)
 
 [node name="Planet4" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(741, 180)
+position = Vector2(484, 71)
+
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="Star" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(407, 115)
+
+[node name="Star2" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(531, 106)
+type = 1
+
+[node name="Star3" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(306, 83)
+type = 2
+
+[node name="Star4" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(321, 206)
+type = 1
+
+[node name="Star5" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(433, 34)
+type = 1
+
+[node name="Star6" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(444, 209)
+
+[node name="Star7" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(470, 124)
+
+[node name="Star8" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(339, 33)
+type = 2
+
+[node name="Star9" parent="Stars" instance=ExtResource("3_iou8o")]
+position = Vector2(524, 43)
+type = 2

@@ -8,12 +8,13 @@ class_name Player extends Node2D
 @export var grapple: Line2D
 @export var raycast: RayCast2D
 
-@export var starting_speed: float = 150.0
-@export var shoot_dist: float = 150.0
-@export var retract_speed: float = 100.0
-@export var min_dist_on_grab: float = 20.0
+@export var starting_speed: float = 75.0
+@export var shoot_dist: float = 50.0
+@export var retract_speed: float = 40.0
+@export var min_dist_on_grab: float = 5.0
 @export var gainable_speed_per_grab: float = 50.0
 
+var following_stars: Array[Star]
 var screen_size: Vector2
 var speed: Vector2
 var last_pos: Vector2
@@ -30,9 +31,6 @@ var aim_vec: Vector2 = Vector2.ZERO
 var is_free: bool = true
 var can_shoot: bool = true
 var is_clockwise_rot: bool = true
-
-var test: float
-var test2: float
 
 
 func _ready() -> void:
