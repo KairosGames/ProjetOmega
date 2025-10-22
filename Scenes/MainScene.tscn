@@ -62,5 +62,5 @@ position = Vector2(339, 33)
 type = 2
 
 [node name="Star9" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(524, 46)
+position = Vector2(526, 48)
 type = 2
