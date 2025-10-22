@@ -26,7 +26,7 @@ fake_targets = [NodePath("FakeTargets/FakeTarget"), NodePath("FakeTargets/FakeTa
 
 [node name="Grapple" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
-width = 2.0
+width = 1.0
 default_color = Color(1, 0.03370842, 0.06473021, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]

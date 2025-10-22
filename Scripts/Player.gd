@@ -132,7 +132,7 @@ func shoot(aim_dir: Vector2) -> void:
 		grapple.points[1],
 		grapple_target,
 		0.1
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).finished
+		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN).finished
 	
 	if is_free:
 		reset_grapple()

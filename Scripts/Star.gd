@@ -34,6 +34,7 @@ func _ready() -> void:
 			mesh.self_modulate = Color(1.0, 0.379, 0.389, 1.0)
 		StarType.Yellow:
 			mesh.self_modulate = Color(0.957, 0.802, 0.0, 1.0)
+	rotation = randf() * TAU
 
 
 func _physics_process(delta: float) -> void:
