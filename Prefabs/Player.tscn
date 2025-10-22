@@ -12,8 +12,9 @@ height = 16.0
 [sub_resource type="PrismMesh" id="PrismMesh_4yxob"]
 size = Vector3(5, 5, 1)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("collision_shape", "arrow", "grapple", "raycast")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("mesh", "collision_shape", "arrow", "grapple", "raycast")]
 script = ExtResource("1_4yxob")
+mesh = NodePath("MeshInstance2D")
 collision_shape = NodePath("CharacterBody2D/CollisionShape2D")
 arrow = NodePath("Arrow")
 grapple = NodePath("Grapple")
@@ -30,7 +31,7 @@ default_color = Color(1, 0.03370842, 0.06473021, 1)
 shape = SubResource("CircleShape2D_u2ehm")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-self_modulate = Color(0.2043803, 0.5700107, 0, 1)
+self_modulate = Color(0.204, 0.569, 0, 1)
 mesh = SubResource("SphereMesh_u2ehm")
 
 [node name="Arrow" type="Node2D" parent="."]

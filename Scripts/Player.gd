@@ -1,5 +1,8 @@
 class_name Player extends Node2D
 
+@export var id: String = "J1"
+@export var player_color: Color = Color(0.204, 0.569, 0.0)
+@export var mesh: MeshInstance2D
 @export var collision_shape: CollisionShape2D
 @export var arrow: Node2D
 @export var grapple: Line2D
@@ -33,6 +36,7 @@ var test2: float
 
 
 func _ready() -> void:
+	mesh.self_modulate = player_color
 	actual_speed = starting_speed
 	speed = Vector2.RIGHT.rotated(randf() * TAU) * actual_speed
 	screen_size = get_viewport_rect().size
@@ -57,10 +61,10 @@ func _physics_process(delta: float) -> void:
 
 
 func get_inputs() -> void:
-	aim_vec = Input.get_vector("J1_Aim_Left","J1_Aim_Right","J1_Aim_Up","J1_Aim_Down")
+	aim_vec = Input.get_vector(id+"_Aim_Left",id+"_Aim_Right",id+"_Aim_Up",id+"_Aim_Down")
 	if aim_vec.length() <= 0.2:
 		aim_vec = Vector2.ZERO
-	if Input.is_action_just_pressed("J1_Grapple"):
+	if Input.is_action_just_pressed(id+"_Grapple"):
 		if is_free:
 			shoot(Vector2.RIGHT.rotated(arrow.rotation))
 		else:

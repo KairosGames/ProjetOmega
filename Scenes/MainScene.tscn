@@ -5,8 +5,13 @@
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_70gsp")]
-position = Vector2(562, 586)
+[node name="Player1" parent="." instance=ExtResource("1_70gsp")]
+position = Vector2(301, 373)
+
+[node name="Player2" parent="." instance=ExtResource("1_70gsp")]
+position = Vector2(837, 372)
+id = "J2"
+player_color = Color(2.5027991e-06, 0.6377404, 0.9303968, 1)
 
 [node name="Planets" type="Node2D" parent="."]
 
