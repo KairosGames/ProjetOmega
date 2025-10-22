@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmoidibm3tpis"]
+[gd_scene load_steps=6 format=3 uid="uid://dmoidibm3tpis"]
 
 [ext_resource type="Script" uid="uid://ddou3cs831ci3" path="res://ProjetOmega/Scripts/Player.gd" id="1_4yxob"]
+[ext_resource type="PackedScene" uid="uid://coeb7t78428p5" path="res://ProjetOmega/Prefabs/FakeTarget.tscn" id="3_vlkwm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2ehm"]
 radius = 4.0
@@ -12,13 +13,16 @@ height = 8.0
 [sub_resource type="PrismMesh" id="PrismMesh_4yxob"]
 size = Vector3(2.5, 3.5, 1)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("mesh", "collision_shape", "arrow", "grapple", "raycast")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("mesh", "collision_shape", "arrow", "grapple", "raycast", "fake_targets_parent", "fake_targets")]
 script = ExtResource("1_4yxob")
 mesh = NodePath("MeshInstance2D")
 collision_shape = NodePath("CharacterBody2D/CollisionShape2D")
 arrow = NodePath("Arrow")
 grapple = NodePath("Grapple")
 raycast = NodePath("Arrow/RayCast2D")
+fake_target_prefab = ExtResource("3_vlkwm")
+fake_targets_parent = NodePath("FakeTargets")
+fake_targets = [NodePath("FakeTargets/FakeTarget"), NodePath("FakeTargets/FakeTarget2")]
 
 [node name="Grapple" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
@@ -44,3 +48,10 @@ collision_mask = 2
 position = Vector2(9, 0)
 rotation = -1.5707964
 mesh = SubResource("PrismMesh_4yxob")
+
+[node name="FakeTargets" type="Node2D" parent="."]
+top_level = true
+
+[node name="FakeTarget" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
+
+[node name="FakeTarget2" parent="FakeTargets" instance=ExtResource("3_vlkwm")]

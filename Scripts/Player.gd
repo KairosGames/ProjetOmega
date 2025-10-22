@@ -7,6 +7,9 @@ class_name Player extends Node2D
 @export var arrow: Node2D
 @export var grapple: Line2D
 @export var raycast: RayCast2D
+@export var fake_target_prefab: PackedScene
+@export var fake_targets_parent: Node2D
+@export var fake_targets: Array[FakeTarget]
 
 @export var starting_speed: float = 75.0
 @export var shoot_dist: float = 50.0
@@ -100,18 +103,19 @@ func handle_grapping(delta: float) -> void:
 
 
 func rectify_position() -> void:
+	var old_pos: Vector2 = global_position
 	if global_position.x < 0 - radius:
 		global_position.x = screen_size.x + radius
-		break_free()
+		handle_reposition(old_pos)
 	if global_position.x > screen_size.x + radius:
 		global_position.x = 0 - radius
-		break_free()
+		handle_reposition(old_pos)
 	if global_position.y < 0 - radius:
 		global_position.y = screen_size.y + radius
-		break_free()
+		handle_reposition(old_pos)
 	if global_position.y > screen_size.y + radius:
 		global_position.y = 0 - radius
-		break_free()
+		handle_reposition(old_pos)
 
 
 func shoot(aim_dir: Vector2) -> void:
@@ -162,6 +166,12 @@ func reset_grapple() -> void:
 	arrow.visible = true
 
 
+func handle_reposition(old_pos: Vector2) -> void:
+	break_free()
+	if following_stars.size() > 0 :
+		give_fake_target(old_pos, following_stars[0])
+
+
 func break_free() -> void:
 	if is_free:
 		return
@@ -170,3 +180,18 @@ func break_free() -> void:
 	speed = orth * actual_speed
 	is_free = true
 	reset_grapple()
+
+
+func give_fake_target(old_pos: Vector2, star: Star) -> void:
+	var free_target: FakeTarget = null
+	for target: FakeTarget in fake_targets:
+		if not target.is_used:
+			free_target = target
+			break
+	if free_target == null:
+		free_target = fake_target_prefab.instantiate()
+		free_target.top_level = true
+		fake_targets_parent.add_child(free_target)
+		fake_targets.push_back(free_target)
+	free_target.global_position = old_pos
+	free_target.followed_by(star)

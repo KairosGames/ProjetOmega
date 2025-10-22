@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://coeb7t78428p5"]
+
+[ext_resource type="Script" uid="uid://cm45ehjt3ebcf" path="res://ProjetOmega/Scripts/FakeTarget.gd" id="1_04ovn"]
+
+[node name="FakeTarget" type="Marker2D"]
+top_level = true
+script = ExtResource("1_04ovn")

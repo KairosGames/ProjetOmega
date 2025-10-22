@@ -11,6 +11,7 @@ enum StarType {Blue, Red, Yellow}
 @export var min_dist_to_target: float = 5.0
 @export var rotation_speed: float = 5.0
 
+var speed: float
 var index: int = -1
 var is_free: bool = true
 var is_full: bool = false
@@ -62,6 +63,10 @@ func follow_target(_delta: float) -> void:
 	if targets.size() <= 0:
 		return
 	var dist: Vector2 = targets[0].global_position - global_position
+	if targets.size() > 1:
+		global_position = lerp(global_position, targets[0].global_position, 0.3)
+		rectify_position()
+		return
 	if dist.length() > min_dist_to_target + targets[0].radius + radius:
 		global_position = lerp(global_position, targets[0].global_position, 0.1)
 	else:
@@ -102,6 +107,10 @@ func handle_context() -> void:
 func set_new_links(target: Node2D, add_to_player = true) -> void:
 	if (add_to_player):
 		player.following_stars.push_back(self)
+		if target is Player:
+			index = 0
+		else:
+			index = target.index + 1
 	targets.push_front(target)
 	is_free = false
 	call_deferred("disable_collider")
@@ -113,3 +122,25 @@ func disable_collider() -> void:
 
 func get_new_parent() -> void:
 	reparent(targets[0])
+
+
+func rectify_position() -> void:
+	var old_pos: Vector2 = global_position
+	if global_position.x < 0 - radius:
+		global_position.x = player.screen_size.x + radius
+		handle_reposition(old_pos)
+	if global_position.x > player.screen_size.x + radius:
+		global_position.x = 0 - radius
+		handle_reposition(old_pos)
+	if global_position.y < 0 - radius:
+		global_position.y = player.screen_size.y + radius
+		handle_reposition(old_pos)
+	if global_position.y > player.screen_size.y + radius:
+		global_position.y = 0 - radius
+		handle_reposition(old_pos)
+
+
+func handle_reposition(old_pos: Vector2) -> void:
+	if player.following_stars.size() > index + 1:
+			player.give_fake_target(old_pos, player.following_stars[index +1])
+	targets.pop_front()
