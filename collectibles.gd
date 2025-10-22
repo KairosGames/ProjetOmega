@@ -29,7 +29,7 @@ func _on_body_entered(body):
 			C_Manager.add_child(self)
 			IsMoving = true
 			
-			DivideSizeBy(3)
+			DivideSizeBy(5)
 			
 	
 

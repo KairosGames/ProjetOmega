@@ -8,7 +8,7 @@ const LERP_FACTOR = 0.1       # 💡 Facteur de lissage (entre 0.0 et 1.0, plus 
 @export var ChildArray : Array = []
 
 
-func _physics_process(delta):
+func _process(delta):
 	FollowPlayerQueue(delta)
 	
 func FollowPlayerQueue(delta: float):
@@ -20,14 +20,14 @@ func FollowPlayerQueue(delta: float):
 		var reference_node
 		if i == 0:
 			# Le premier collectible suit le Col_Manager (Player) lui-même
-			reference_node = self 
+			reference_node = self.get_parent()
 		else:
 			# Les autres suivent le collectible précédent (i - 1)
 			reference_node = ChildArray[i - 1]
 			
 		# 2. Calculer la position souhaitée (la cible avec le décalage)
 		
-		# 🎯 CORRECTION MAJEURE : Utiliser global_position pour les positions dans le monde
+		#  Utiliser global_position pour les positions dans le monde
 		var current_global_pos = current_coll.global_position # Position actuelle du collectible dans le monde
 		var target_global_pos = reference_node.global_position # Position de la cible dans le monde
 		
@@ -35,7 +35,7 @@ func FollowPlayerQueue(delta: float):
 		var direction_vector = target_global_pos - current_global_pos
 		
 		# Si la cible est trop proche, ne bouge pas.
-		if direction_vector.length_squared() < 1.0:
+		if direction_vector.length_squared() < 3.0:
 			continue
 
 		# 3. Calculer la position qui maintient la distance de suivi
