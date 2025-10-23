@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://g5kdx4hqosq6"]
+[gd_scene load_steps=5 format=3 uid="uid://g5kdx4hqosq6"]
 
 [ext_resource type="PackedScene" uid="uid://dmoidibm3tpis" path="res://ProjetOmega/Prefabs/Player.tscn" id="1_70gsp"]
 [ext_resource type="PackedScene" uid="uid://cm1cw7hgvhp32" path="res://ProjetOmega/Prefabs/Planet.tscn" id="2_11ktj"]
 [ext_resource type="PackedScene" uid="uid://dk0xrcyrw72j2" path="res://ProjetOmega/Prefabs/Star.tscn" id="3_iou8o"]
+[ext_resource type="Script" uid="uid://b0i80j6p8dl4e" path="res://addons/godOSC/scripts/OSCServer.gd" id="4_xv4q2"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -10,11 +11,23 @@
 
 [node name="Player1" parent="Players" instance=ExtResource("1_70gsp")]
 position = Vector2(245, 211)
+id = "J1"
+player_color = Color(0.204, 0.569, 0, 1)
+starting_speed = 75.0
+shoot_dist = 50.0
+retract_speed = 40.0
+min_dist_on_grab = 5.0
+gainable_speed_per_grab = 50.0
 
 [node name="Player2" parent="Players" instance=ExtResource("1_70gsp")]
 position = Vector2(552, 203)
 id = "J2"
 player_color = Color(2.5027991e-06, 0.6377404, 0.9303968, 1)
+starting_speed = 75.0
+shoot_dist = 50.0
+retract_speed = 40.0
+min_dist_on_grab = 5.0
+gainable_speed_per_grab = 50.0
 
 [node name="Planets" type="Node2D" parent="."]
 
@@ -64,3 +77,7 @@ type = 2
 [node name="Star9" parent="Stars" instance=ExtResource("3_iou8o")]
 position = Vector2(526, 48)
 type = 2
+
+[node name="ControllersServer" type="Node" parent="."]
+script = ExtResource("4_xv4q2")
+port = 9999
