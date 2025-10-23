@@ -10,8 +10,8 @@ var lead_intru_p2: Array[int]
 var bass_intru_p2: Array[int]
 var drums_intru_p2: Array[int]
 
-var lead_list: Array[int] = [I, I2, V, IV, VI, II, III, VII]
-var bass_list: Array[int] = [I, I2, V, IV, VI, II, III, VII]
+var lead_list: Array[int]
+var bass_list: Array[int]
 var drums_list: Array[int]
 
 
@@ -42,6 +42,10 @@ func _ready():
 	VII = I + 11
 	I2 = I + 12
 	Scale = [I, II, III, IV, V, VI, VII, I2]
+	
+	lead_list = [I, I2, V, IV, VI, II, III, VII]
+	bass_list = [I, I2, V, IV, VI, II, III, VII]
+	
 	_Generate()
 	_Clock()
 

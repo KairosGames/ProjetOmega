@@ -11,5 +11,6 @@ func _ready() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.get_parent() is Player:
-		var player = body.get_parent()
+	if body.get_parent() is Player:	
+		var player = body.get_parent() as Player
+		player.change_dir(player.speed.normalized().bounce((player.global_position - global_position).normalized()))

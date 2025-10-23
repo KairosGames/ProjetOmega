@@ -40,6 +40,9 @@ position = Vector2(368, 68)
 [node name="Planet4" parent="Planets" instance=ExtResource("2_11ktj")]
 position = Vector2(484, 71)
 
+[node name="Planet5" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(408, 68)
+
 [node name="Stars" type="Node2D" parent="."]
 
 [node name="Star" parent="Stars" instance=ExtResource("3_iou8o")]

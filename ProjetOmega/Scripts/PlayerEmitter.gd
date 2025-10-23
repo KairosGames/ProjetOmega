@@ -6,11 +6,6 @@ var player_to_follow: Player
 
 func _ready() -> void:
 	clock = get_parent() as Clock
-	
-	if clock == null:
-		print("nique ta mère")
-	
-	
 	if is_player1:
 		player_to_follow = clock.player1
 	else:
