@@ -1,5 +1,7 @@
 extends FmodEventEmitter2D
 
+var clock: Clock
+var player_emitter: PlayerEmitter
 var PlayNote : int
 var increment = 0
 var Down = false
@@ -10,39 +12,39 @@ var IsLead = true
 var Count
 var Ignore = 1
 
+
 func _ready():
-	pass
 	Count = Ignore - 1
-	
-func _process(_delta):
-	pass
-	
-func _Play():
-	pass
+	player_emitter = get_parent() as PlayerEmitter
+	clock = get_parent().get_parent() as Clock
 
 
-func _on_node_2d_bip(Notes, Scale, Chords, invertedbps) -> void:
-	
+func _on_sound_manger_bip() -> void:
 	Count += 1
 	
 	if Count == Ignore:
 		Count = 0
-		if Notes[PlayNote] == "None":
+		if clock.Notes[PlayNote] == "None":
 			pass
 		if IsLead == true:
 			var Random = randi_range(0, 1)
 			if Random == 1:
 				pass
 			else:
-				print("true")
-				PlayNote = Scale.pick_random()
-				self.play()
-				self.set_parameter("Note", Notes[PlayNote])
+				PlayNote = clock.Scale.pick_random()
+				var lead_player_intru: Array[int]
+				if player_emitter.is_player1:
+					lead_player_intru = clock.lead_intru_p1
+				else:
+					lead_player_intru = clock.lead_intru_p2
+				for n: int in lead_player_intru:
+					if n == PlayNote:
+						self.play()
+						self.set_parameter("Note", clock.Notes[PlayNote])
 		else :
-			PlayNote = Chords[increment]
+			PlayNote = clock.Chords[increment]
 			increment += 1
 			if increment == 3:
 				increment = 0
 				self.play()
-				self.set_parameter("Note", Notes[PlayNote])
-				print("Note", Notes[PlayNote])
+				self.set_parameter("Note", clock.Notes[PlayNote])

@@ -1,20 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://g5kdx4hqosq6"]
+[gd_scene load_steps=5 format=3 uid="uid://g5kdx4hqosq6"]
 
 [ext_resource type="PackedScene" uid="uid://dmoidibm3tpis" path="res://ProjetOmega/Prefabs/Player.tscn" id="1_70gsp"]
+[ext_resource type="PackedScene" uid="uid://dkaqv4nhnpa87" path="res://ProjetOmega/Prefabs/SoundManger.tscn" id="1_xv4q2"]
 [ext_resource type="PackedScene" uid="uid://cm1cw7hgvhp32" path="res://ProjetOmega/Prefabs/Planet.tscn" id="2_11ktj"]
 [ext_resource type="PackedScene" uid="uid://dk0xrcyrw72j2" path="res://ProjetOmega/Prefabs/Star.tscn" id="3_iou8o"]
 
 [node name="MainScene" type="Node2D"]
 
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Desktop/Master.strings.bank", "res://Desktop/Master.bank"]
+
+[node name="SoundManger" parent="." node_paths=PackedStringArray("player1", "player2") instance=ExtResource("1_xv4q2")]
+player1 = NodePath("../Players/Player1")
+player2 = NodePath("../Players/Player2")
+
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player1" parent="Players" instance=ExtResource("1_70gsp")]
+[node name="Player1" parent="Players" node_paths=PackedStringArray("sound_manager") instance=ExtResource("1_70gsp")]
 position = Vector2(245, 211)
+sound_manager = NodePath("../../SoundManger")
 
-[node name="Player2" parent="Players" instance=ExtResource("1_70gsp")]
+[node name="Player2" parent="Players" node_paths=PackedStringArray("sound_manager") instance=ExtResource("1_70gsp")]
 position = Vector2(552, 203)
 id = "J2"
 player_color = Color(2.5027991e-06, 0.6377404, 0.9303968, 1)
+sound_manager = NodePath("../../SoundManger")
 
 [node name="Planets" type="Node2D" parent="."]
 
@@ -64,6 +74,3 @@ type = 2
 [node name="Star9" parent="Stars" instance=ExtResource("3_iou8o")]
 position = Vector2(526, 48)
 type = 2
-
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-bank_paths = ["res://Desktop/Master.strings.bank", "res://Desktop/Master.bank"]

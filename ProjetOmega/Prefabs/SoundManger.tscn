@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkaqv4nhnpa87"]
+
+[ext_resource type="Script" uid="uid://b1jdaatued2ky" path="res://ProjetOmega/Scripts/Script_Fmod/Clock.gd" id="1_4bk20"]
+[ext_resource type="Script" uid="uid://bp7j47d13qngh" path="res://ProjetOmega/Scripts/Script_Fmod/Lead.gd" id="2_ky0o0"]
+[ext_resource type="Script" uid="uid://dpfemkpsjvocb" path="res://ProjetOmega/Scripts/PlayerEmitter.gd" id="2_ugx6y"]
+[ext_resource type="Script" uid="uid://bhtqu8d6sskka" path="res://ProjetOmega/Scripts/Script_Fmod/Bass.gd" id="4_142s0"]
+
+[node name="SoundManger" type="Node2D"]
+script = ExtResource("1_4bk20")
+
+[node name="EmittersPlayer1" type="Node2D" parent="."]
+script = ExtResource("2_ugx6y")
+is_player1 = true
+
+[node name="LeadP1EventEmitter2D" type="FmodEventEmitter2D" parent="EmittersPlayer1"]
+event_name = "event:/P1_Lead"
+event_guid = "{46c11c37-beb3-4de2-974a-55728275ede5}"
+fmod_parameters/Note/id = 799449116301791407
+fmod_parameters/Note = "None"
+fmod_parameters/Note/labels = PackedStringArray("None", "Do", "RÃ©b", "RÃ©", "Mib", "Mi", "Fa", "Solb", "Sol", "Lab", "La", "Sib", "Si", "Do2", "RÃ©b2", "RÃ©2", "Mib2", "Mi2", "Fa2", "Solb2", "Sol2", "Lab2", "La2", "Sib2", "Si2", "Do3", "RÃ©b3", "RÃ©3", "Mib3", "Mi3", "Fa3", "Solb3", "Sol3", "Lab3", "La3", "Sib3", "Si3")
+fmod_parameters/Note/variant_type = 4
+script = ExtResource("2_ky0o0")
+
+[node name="BassP1EventEmitter" type="FmodEventEmitter2D" parent="EmittersPlayer1"]
+event_name = "event:/Bass"
+event_guid = "{aa88953f-74b2-4520-8c6d-63e6911546ee}"
+fmod_parameters/Synth_Note/id = 8660914511065349601
+fmod_parameters/Synth_Note = "None"
+fmod_parameters/Synth_Note/labels = PackedStringArray("None", "Do", "RÃ©b", "RÃ©", "Mib", "Mi", "Fa", "Solb", "Sol", "Lab", "La", "Sib", "Si", "Do2", "RÃ©b2", "RÃ©2", "Mib2", "Mi2", "Fa2", "Solb2", "Sol2", "Lab2", "La2", "Sib2", "Si2")
+fmod_parameters/Synth_Note/variant_type = 4
+script = ExtResource("4_142s0")
+
+[node name="EmittersPlayer2" type="Node2D" parent="."]
+script = ExtResource("2_ugx6y")
+
+[node name="LeadP2EventEmitter" type="FmodEventEmitter2D" parent="EmittersPlayer2"]
+event_name = "event:/P1_Lead"
+event_guid = "{46c11c37-beb3-4de2-974a-55728275ede5}"
+fmod_parameters/Note/id = 799449116301791407
+fmod_parameters/Note = "None"
+fmod_parameters/Note/labels = PackedStringArray("None", "Do", "RÃ©b", "RÃ©", "Mib", "Mi", "Fa", "Solb", "Sol", "Lab", "La", "Sib", "Si", "Do2", "RÃ©b2", "RÃ©2", "Mib2", "Mi2", "Fa2", "Solb2", "Sol2", "Lab2", "La2", "Sib2", "Si2", "Do3", "RÃ©b3", "RÃ©3", "Mib3", "Mi3", "Fa3", "Solb3", "Sol3", "Lab3", "La3", "Sib3", "Si3")
+fmod_parameters/Note/variant_type = 4
+script = ExtResource("2_ky0o0")
+
+[node name="BassP2EventEmitter" type="FmodEventEmitter2D" parent="EmittersPlayer2"]
+event_name = "event:/Bass"
+event_guid = "{aa88953f-74b2-4520-8c6d-63e6911546ee}"
+fmod_parameters/Synth_Note/id = 8660914511065349601
+fmod_parameters/Synth_Note = "None"
+fmod_parameters/Synth_Note/labels = PackedStringArray("None", "Do", "RÃ©b", "RÃ©", "Mib", "Mi", "Fa", "Solb", "Sol", "Lab", "La", "Sib", "Si", "Do2", "RÃ©b2", "RÃ©2", "Mib2", "Mi2", "Fa2", "Solb2", "Sol2", "Lab2", "La2", "Sib2", "Si2")
+fmod_parameters/Synth_Note/variant_type = 4
+script = ExtResource("4_142s0")
+
+[connection signal="Bip" from="." to="EmittersPlayer1/LeadP1EventEmitter2D" method="_on_sound_manger_bip"]
+[connection signal="Bip" from="." to="EmittersPlayer1/BassP1EventEmitter" method="_on_sound_manger_bip"]
+[connection signal="Bip" from="." to="EmittersPlayer2/LeadP2EventEmitter" method="_on_sound_manger_bip"]
+[connection signal="Bip" from="." to="EmittersPlayer2/BassP2EventEmitter" method="_on_sound_manger_bip"]

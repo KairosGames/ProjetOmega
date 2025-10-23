@@ -89,6 +89,7 @@ func join_to_complete(_delta: float) -> void:
 		target.is_completed = true
 		visible = false
 		is_hidden = true
+		player.sound_manager.give_note(player.id, type)
 
 
 func rotate_to_be_completed(_delta: float) -> void:

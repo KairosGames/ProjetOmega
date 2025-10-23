@@ -1,29 +1,37 @@
 extends FmodEventEmitter2D
 
+var clock: Clock
+var player_emitter: PlayerEmitter
 var PlayNote
 var Count
 var Ignore = 2
 var increment : int = 0
 var Owner
 
+
 func _ready():
-	pass
 	Count = Ignore - 1
-	
-func _on_node_2d_bip(Notes, Scale, Chords, invertedbps) -> void:
-	
+	player_emitter = get_parent() as PlayerEmitter
+	clock = get_parent().get_parent() as Clock
+
+
+func _on_sound_manger_bip() -> void:
 	Count += 1
-	
-	PlayNote = Chords[increment]
-	if increment == 3:
-		increment = 0
-	
-	if Count == Ignore:
-		increment +=1
-		Count =0
-		if Notes[PlayNote] == "None":
-			pass
-		else:
-			self.play()
-			self.set_parameter("Synth_Note", Notes[PlayNote])
-			print("Synth_Note", Notes[PlayNote])
+	PlayNote = clock.Chords[increment]
+	var lead_player_intru: Array[int]
+	if player_emitter.is_player1:
+		lead_player_intru = clock.bass_intru_p1
+	else:
+		lead_player_intru = clock.bass_intru_p2
+	for n: int in lead_player_intru:
+		if n == PlayNote:
+			if increment == 3:
+				increment = 0
+			if Count == Ignore:
+				increment +=1
+				Count =0
+				if  clock.Notes[PlayNote] == "None":
+					pass
+				else:
+					self.play()
+					self.set_parameter("Synth_Note", clock.Notes[PlayNote])

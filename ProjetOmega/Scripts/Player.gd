@@ -10,12 +10,14 @@ class_name Player extends Node2D
 @export var fake_target_prefab: PackedScene
 @export var fake_targets_parent: Node2D
 @export var fake_targets: Array[FakeTarget]
+@export var sound_manager: Clock
 
 @export var starting_speed: float = 75.0
 @export var shoot_dist: float = 50.0
 @export var retract_speed: float = 40.0
 @export var min_dist_on_grab: float = 5.0
 @export var gainable_speed_per_grab: float = 50.0
+@export var screen_vertical_offset: float = 32.0
 
 var following_stars: Array[Star]
 var screen_size: Vector2
@@ -41,6 +43,7 @@ func _ready() -> void:
 	actual_speed = starting_speed
 	speed = Vector2.RIGHT.rotated(randf() * TAU) * actual_speed
 	screen_size = get_viewport_rect().size
+	screen_size.y -= screen_vertical_offset
 	raycast.target_position = Vector2(shoot_dist, 0.0)
 	if collision_shape.shape is CircleShape2D:
 		radius = collision_shape.shape.radius
@@ -74,6 +77,13 @@ func get_inputs() -> void:
 
 func free_move(delta: float) -> void:
 	global_position += speed * delta
+
+
+func change_dir(normalized_dir: Vector2) -> void:
+	if is_free:
+		speed = normalized_dir * actual_speed
+	else:
+		is_clockwise_rot = !is_clockwise_rot
 
 
 func rotate_viewfinder() -> void:

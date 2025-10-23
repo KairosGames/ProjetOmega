@@ -25,7 +25,7 @@ FmodManager="*res://addons/fmod/FmodManager.gd"
 
 [display]
 
-window/size/viewport_width=896
+window/size/viewport_width=1408
 window/size/viewport_height=256
 window/size/initial_position_type=0
 
