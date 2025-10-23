@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmoidibm3tpis"]
+[gd_scene load_steps=7 format=3 uid="uid://dmoidibm3tpis"]
 
 [ext_resource type="Script" uid="uid://ddou3cs831ci3" path="res://ProjetOmega/Scripts/Player.gd" id="1_4yxob"]
+[ext_resource type="Script" uid="uid://dadlmoxi5axdc" path="res://ProjetOmega/Prefabs/PlayerController.gd" id="3_kyihr"]
 [ext_resource type="PackedScene" uid="uid://coeb7t78428p5" path="res://ProjetOmega/Prefabs/FakeTarget.tscn" id="3_vlkwm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2ehm"]
@@ -13,10 +14,11 @@ height = 8.0
 [sub_resource type="PrismMesh" id="PrismMesh_4yxob"]
 size = Vector3(2.5, 3.5, 1)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("mesh", "collision_shape", "arrow", "grapple", "raycast", "fake_targets_parent", "fake_targets")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("mesh", "collision_shape", "controller", "arrow", "grapple", "raycast", "fake_targets_parent", "fake_targets")]
 script = ExtResource("1_4yxob")
 mesh = NodePath("MeshInstance2D")
 collision_shape = NodePath("CharacterBody2D/CollisionShape2D")
+controller = NodePath("Controller")
 arrow = NodePath("Arrow")
 grapple = NodePath("Grapple")
 raycast = NodePath("Arrow/RayCast2D")
@@ -61,3 +63,7 @@ top_level = true
 [node name="FakeTarget4" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
 
 [node name="FakeTarget5" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
+
+[node name="Controller" type="Node" parent="."]
+script = ExtResource("3_kyihr")
+osc_address = "/mouse"
