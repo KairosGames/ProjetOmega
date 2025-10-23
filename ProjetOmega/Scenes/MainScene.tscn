@@ -64,3 +64,6 @@ type = 2
 [node name="Star9" parent="Stars" instance=ExtResource("3_iou8o")]
 position = Vector2(526, 48)
 type = 2
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Desktop/Master.strings.bank", "res://Desktop/Master.bank"]

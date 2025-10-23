@@ -8,6 +8,10 @@
 
 config_version=5
 
+[Fmod]
+
+General/banks_path="res://Desktop"
+
 [application]
 
 config/name="ProjetOmega"
@@ -15,11 +19,19 @@ run/main_scene="uid://g5kdx4hqosq6"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+FmodManager="*res://addons/fmod/FmodManager.gd"
+
 [display]
 
 window/size/viewport_width=896
 window/size/viewport_height=256
 window/size/initial_position_type=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
 [input]
 
