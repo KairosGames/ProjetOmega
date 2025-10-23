@@ -4,9 +4,8 @@ var clock: Clock
 var player_emitter: PlayerEmitter
 var PlayNote
 var Count
-var Ignore = 2
+var Ignore = 1
 var increment : int = 0
-var Owner
 
 
 func _ready():
@@ -16,22 +15,22 @@ func _ready():
 
 
 func _on_sound_manger_bip() -> void:
-	Count += 1
-	PlayNote = clock.Chords[increment]
-	var lead_player_intru: Array[int]
+	var bass_player_intru: Array[int]
 	if player_emitter.is_player1:
-		lead_player_intru = clock.bass_intru_p1
+		bass_player_intru = clock.bass_intru_p1
 	else:
-		lead_player_intru = clock.bass_intru_p2
-	for n: int in lead_player_intru:
-		if n == PlayNote:
-			if increment == 3:
-				increment = 0
-			if Count == Ignore:
-				increment +=1
-				Count =0
-				if  clock.Notes[PlayNote] == "None":
-					pass
-				else:
-					self.play()
-					self.set_parameter("Synth_Note", clock.Notes[PlayNote])
+		bass_player_intru = clock.bass_intru_p2
+	if bass_player_intru.is_empty():
+		pass
+		print
+	else:
+		if bass_player_intru.has(clock.PlayBassNoteIndex):
+			print("hasbidule")
+			if clock.PlayBassNote == "none":
+				pass
+				print("none")
+			else:
+				print("pauv merde")
+				self.set_parameter("SynthNote", clock.PlayBassNote)
+				self.play()
+				print(self.get_parameter("SynthNote"))

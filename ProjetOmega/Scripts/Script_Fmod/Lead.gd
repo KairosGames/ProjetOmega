@@ -41,6 +41,7 @@ func _on_sound_manger_bip() -> void:
 					if n == PlayNote:
 						self.play()
 						self.set_parameter("Note", clock.Notes[PlayNote])
+						print(global_position)
 		else :
 			PlayNote = clock.Chords[increment]
 			increment += 1

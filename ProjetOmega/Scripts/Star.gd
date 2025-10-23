@@ -100,7 +100,7 @@ func handle_context() -> void:
 	if player.following_stars.size() != 0:
 		for star: Star in player.following_stars:
 			if star.type == type:
-				if star.is_full: break
+				if star.is_full: continue
 				star.is_full = true
 				star.completing_star = self
 				star.has_to_be_joined = true

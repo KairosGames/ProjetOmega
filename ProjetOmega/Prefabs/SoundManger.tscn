@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://dpfemkpsjvocb" path="res://ProjetOmega/Scripts/PlayerEmitter.gd" id="2_ugx6y"]
 [ext_resource type="Script" uid="uid://bhtqu8d6sskka" path="res://ProjetOmega/Scripts/Script_Fmod/Bass.gd" id="4_142s0"]
 
-[node name="SoundManger" type="Node2D"]
+[node name="SoundManger" type="Node2D" node_paths=PackedStringArray("BassP1", "BassP2")]
 script = ExtResource("1_4bk20")
+BassP1 = NodePath("EmittersPlayer1/BassP1EventEmitter")
+BassP2 = NodePath("EmittersPlayer2/BassP2EventEmitter")
 
 [node name="EmittersPlayer1" type="Node2D" parent="."]
 script = ExtResource("2_ugx6y")
@@ -45,6 +47,7 @@ script = ExtResource("2_ky0o0")
 [node name="BassP2EventEmitter" type="FmodEventEmitter2D" parent="EmittersPlayer2"]
 event_name = "event:/Bass"
 event_guid = "{aa88953f-74b2-4520-8c6d-63e6911546ee}"
+autoplay = true
 fmod_parameters/Synth_Note/id = 8660914511065349601
 fmod_parameters/Synth_Note = "None"
 fmod_parameters/Synth_Note/labels = PackedStringArray("None", "Do", "RÃ©b", "RÃ©", "Mib", "Mi", "Fa", "Solb", "Sol", "Lab", "La", "Sib", "Si", "Do2", "RÃ©b2", "RÃ©2", "Mib2", "Mi2", "Fa2", "Solb2", "Sol2", "Lab2", "La2", "Sib2", "Si2")

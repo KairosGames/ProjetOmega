@@ -2,6 +2,8 @@ class_name Clock extends Node
 
 @export var player1: Player
 @export var player2: Player
+@export var BassP1: FmodEventEmitter2D
+@export var BassP2: FmodEventEmitter2D
 
 var lead_intru_p1: Array[int]
 var bass_intru_p1: Array[int]
@@ -29,6 +31,8 @@ var I2: int
 var Scale: Array[int]
 var Chords: Array[int]
 var increment = 0
+var PlayBassNote : String
+var PlayBassNoteIndex : int
 
 signal Bip(Notes, Scale)
 
@@ -58,8 +62,10 @@ func give_note(player_id: String, star_type: Star.StarType) -> void:
 			source = bass_list
 			if player_id == "J1":
 				player_intru = bass_intru_p1
+				print(bass_intru_p2)
 			else:
 				player_intru = bass_intru_p2
+				print(bass_intru_p2)
 		Star.StarType.Red:
 			source = lead_list
 			if player_id == "J1":
@@ -87,6 +93,15 @@ func _Clock():
 	if increment == 16:
 		increment = 0
 		_Generate()
+	var BassNotes : Array
+	BassNotes = bass_intru_p1 + bass_intru_p2
+	if BassNotes.is_empty():
+		pass
+	else:
+		PlayBassNoteIndex = randi_range(0, BassNotes.size())
+		PlayBassNote = Notes[PlayBassNoteIndex]
+		BassP1.PlayNote=PlayBassNote
+		BassP2.PlayNote=PlayBassNote
 	_Clock()
 	
 func _NewChords():
