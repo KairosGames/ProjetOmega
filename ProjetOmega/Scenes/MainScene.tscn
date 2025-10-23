@@ -7,6 +7,10 @@
 
 [node name="MainScene" type="Node2D"]
 
+[node name="FmodListener2D" type="FmodListener2D" parent="."]
+is_locked = true
+position = Vector2(704, 112)
+
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://Desktop/Master.strings.bank", "res://Desktop/Master.bank"]
 
