@@ -11,6 +11,7 @@ enum StarType {Blue, Red, Yellow}
 @export var min_dist_to_target: float = 5.0
 @export var rotation_speed: float = 5.0
 
+var completing_star: Star
 var speed: float
 var index: int = -1
 var is_free: bool = true
@@ -18,6 +19,8 @@ var is_full: bool = false
 var has_to_join: bool = false
 var has_to_be_joined: bool = false
 var is_completed: bool = false
+var is_hidden: bool = false
+var is_sound_handle: bool = false
 
 var targets: Array[Node2D]
 var player: Player
@@ -38,6 +41,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_hidden:
+		return
 	if not is_full and not has_to_join and not has_to_be_joined:
 		auto_rotate(delta)
 	if not is_free and not has_to_join:
@@ -82,7 +87,8 @@ func join_to_complete(_delta: float) -> void:
 		target.has_to_be_joined = false
 		target.cover.visible = false
 		target.is_completed = true
-		queue_free()
+		visible = false
+		is_hidden = true
 
 
 func rotate_to_be_completed(_delta: float) -> void:
@@ -93,8 +99,9 @@ func handle_context() -> void:
 	if player.following_stars.size() != 0:
 		for star: Star in player.following_stars:
 			if star.type == type:
-				if star.is_full: return
+				if star.is_full: break
 				star.is_full = true
+				star.completing_star = self
 				star.has_to_be_joined = true
 				has_to_join = true
 				set_new_links(star, false)

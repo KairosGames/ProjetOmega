@@ -22,7 +22,7 @@ grapple = NodePath("Grapple")
 raycast = NodePath("Arrow/RayCast2D")
 fake_target_prefab = ExtResource("3_vlkwm")
 fake_targets_parent = NodePath("FakeTargets")
-fake_targets = [NodePath("FakeTargets/FakeTarget"), NodePath("FakeTargets/FakeTarget2")]
+fake_targets = [NodePath("FakeTargets/FakeTarget"), NodePath("FakeTargets/FakeTarget2"), NodePath("FakeTargets/FakeTarget3"), NodePath("FakeTargets/FakeTarget4"), NodePath("FakeTargets/FakeTarget5")]
 
 [node name="Grapple" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
@@ -55,3 +55,9 @@ top_level = true
 [node name="FakeTarget" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
 
 [node name="FakeTarget2" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
+
+[node name="FakeTarget3" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
+
+[node name="FakeTarget4" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
+
+[node name="FakeTarget5" parent="FakeTargets" instance=ExtResource("3_vlkwm")]
