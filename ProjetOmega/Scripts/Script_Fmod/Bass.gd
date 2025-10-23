@@ -18,12 +18,12 @@ func _ready():
 func _on_sound_manger_bip() -> void:
 	Count += 1
 	PlayNote = clock.Chords[increment]
-	var lead_player_intru: Array[int]
+	var bass_player_intru: Array[int]
 	if player_emitter.is_player1:
-		lead_player_intru = clock.bass_intru_p1
+		bass_player_intru = clock.bass_intru_p1
 	else:
-		lead_player_intru = clock.bass_intru_p2
-	for n: int in lead_player_intru:
+		bass_player_intru = clock.bass_intru_p2
+	for n: int in bass_player_intru:
 		if n == PlayNote:
 			if increment == 3:
 				increment = 0
