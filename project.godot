@@ -89,4 +89,4 @@ J2_Grapple={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.0885599, 0.08855992, 0.08855987, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

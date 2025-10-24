@@ -137,16 +137,16 @@ func rectify_position() -> void:
 	var old_pos: Vector2 = global_position
 	if global_position.x < 0 - radius:
 		global_position.x = player.screen_size.x + radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.LEFT * 10)
 	if global_position.x > player.screen_size.x + radius:
 		global_position.x = 0 - radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.RIGHT * 10)
 	if global_position.y < 0 - radius:
 		global_position.y = player.screen_size.y + radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.UP * 10)
 	if global_position.y > player.screen_size.y + radius:
 		global_position.y = 0 - radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.DOWN * 10)
 
 
 func handle_reposition(old_pos: Vector2) -> void:

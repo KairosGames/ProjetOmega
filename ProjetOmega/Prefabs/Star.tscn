@@ -35,7 +35,7 @@ self_modulate = Color(0.09019608, 0.09019608, 0.09019608, 1)
 mesh = SubResource("SphereMesh_iaoy7")
 
 [node name="Cover" type="MeshInstance2D" parent="."]
-self_modulate = Color(0.09019608, 0.09019608, 0.09019608, 1)
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(1, 0)
 mesh = SubResource("BoxMesh_rm0l1")
 
