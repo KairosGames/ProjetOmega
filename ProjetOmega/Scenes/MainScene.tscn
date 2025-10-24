@@ -51,6 +51,12 @@ position = Vector2(484, 71)
 [node name="Planet5" parent="Planets" instance=ExtResource("2_11ktj")]
 position = Vector2(408, 68)
 
+[node name="Planet6" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(242, 185)
+
+[node name="Planet7" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(542, 183)
+
 [node name="Stars" type="Node2D" parent="."]
 
 [node name="Star" parent="Stars" instance=ExtResource("3_iou8o")]
