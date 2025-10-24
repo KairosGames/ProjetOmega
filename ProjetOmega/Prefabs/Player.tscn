@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmoidibm3tpis"]
 
 [ext_resource type="Script" uid="uid://ddou3cs831ci3" path="res://ProjetOmega/Scripts/Player.gd" id="1_4yxob"]
-[ext_resource type="Script" uid="uid://dadlmoxi5axdc" path="res://ProjetOmega/Prefabs/PlayerController.gd" id="3_kyihr"]
+[ext_resource type="Script" uid="uid://dadlmoxi5axdc" path="res://ProjetOmega/Scripts/PlayerController.gd" id="3_kyihr"]
 [ext_resource type="PackedScene" uid="uid://coeb7t78428p5" path="res://ProjetOmega/Prefabs/FakeTarget.tscn" id="3_vlkwm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2ehm"]
