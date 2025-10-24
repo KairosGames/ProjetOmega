@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmoidibm3tpis"]
+[gd_scene load_steps=9 format=3 uid="uid://dmoidibm3tpis"]
 
 [ext_resource type="Script" uid="uid://ddou3cs831ci3" path="res://ProjetOmega/Scripts/Player.gd" id="1_4yxob"]
 [ext_resource type="Script" uid="uid://dadlmoxi5axdc" path="res://ProjetOmega/Scripts/PlayerController.gd" id="3_kyihr"]
+[ext_resource type="PackedScene" uid="uid://8ckhqmn5yfgm" path="res://ProjetOmega/Prefabs/Visuals/visu_arrow_grab.tscn" id="3_opk36"]
 [ext_resource type="PackedScene" uid="uid://coeb7t78428p5" path="res://ProjetOmega/Prefabs/FakeTarget.tscn" id="3_vlkwm"]
+[ext_resource type="Script" uid="uid://bpwuioh7tplsy" path="res://ProjetOmega/Scripts/visu_arrow_grab.gd" id="4_3q3na"]
+[ext_resource type="PackedScene" uid="uid://dx7oi3umgq6d" path="res://ProjetOmega/Prefabs/Visuals/ps_player_particle.tscn" id="4_vlkwm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2ehm"]
 radius = 4.0
@@ -10,9 +13,6 @@ radius = 4.0
 [sub_resource type="SphereMesh" id="SphereMesh_u2ehm"]
 radius = 4.0
 height = 8.0
-
-[sub_resource type="PrismMesh" id="PrismMesh_4yxob"]
-size = Vector3(2.5, 3.5, 1)
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("mesh", "collision_shape", "controller", "arrow", "grapple", "raycast", "fake_targets_parent", "fake_targets")]
 script = ExtResource("1_4yxob")
@@ -46,10 +46,10 @@ mesh = SubResource("SphereMesh_u2ehm")
 target_position = Vector2(50, 0)
 collision_mask = 2
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Arrow"]
-position = Vector2(9, 0)
+[node name="visu_arrowGrab" parent="Arrow" instance=ExtResource("3_opk36")]
+position = Vector2(11, 0)
 rotation = -1.5707964
-mesh = SubResource("PrismMesh_4yxob")
+script = ExtResource("4_3q3na")
 
 [node name="FakeTargets" type="Node2D" parent="."]
 top_level = true
@@ -67,3 +67,5 @@ top_level = true
 [node name="Controller" type="Node" parent="."]
 script = ExtResource("3_kyihr")
 osc_address = "/mouse"
+
+[node name="PS_playerParticle" parent="." instance=ExtResource("4_vlkwm")]

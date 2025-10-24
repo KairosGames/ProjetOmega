@@ -1,5 +1,6 @@
 class_name Planet extends Node2D
 
+@export var particles: GPUParticles2D
 @export var static_collision_shape: CollisionShape2D
 @export var area_collision_shape: CollisionShape2D
 @export var mesh: MeshInstance2D
@@ -22,6 +23,11 @@ func _ready() -> void:
 	if mesh.mesh is SphereMesh:
 		mesh.mesh.radius = radius
 		mesh.mesh.height = radius * 2
+	
+	var ratio: float = (radius/7.0)
+	if ratio > 1.5:
+		ratio *= 0.8
+	particles.global_scale = Vector2(ratio, ratio)
 	
 
 

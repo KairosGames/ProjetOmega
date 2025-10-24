@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm1cw7hgvhp32"]
+[gd_scene load_steps=6 format=3 uid="uid://cm1cw7hgvhp32"]
 
 [ext_resource type="Script" uid="uid://d4e0p6xdakaht" path="res://ProjetOmega/Scripts/Planet.gd" id="1_007c7"]
+[ext_resource type="PackedScene" uid="uid://cqi4isfjilucy" path="res://ProjetOmega/Prefabs/Visuals/ps_planet.tscn" id="2_ana4q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_makee"]
 radius = 7.0
@@ -12,8 +13,9 @@ radius = 7.0
 radius = 7.0
 height = 14.0
 
-[node name="Planet" type="Node2D" node_paths=PackedStringArray("static_collision_shape", "area_collision_shape", "mesh")]
+[node name="Planet" type="Node2D" node_paths=PackedStringArray("particles", "static_collision_shape", "area_collision_shape", "mesh")]
 script = ExtResource("1_007c7")
+particles = NodePath("MeshInstance2D/PS_playerParticle")
 static_collision_shape = NodePath("StaticBody2D/CollisionShape2D")
 area_collision_shape = NodePath("Area2D/CollisionShape2D")
 mesh = NodePath("MeshInstance2D")
@@ -31,7 +33,9 @@ shape = SubResource("CircleShape2D_makee")
 shape = SubResource("CircleShape2D_007c7")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-self_modulate = Color(0.9933638, 0.82466435, 0, 1)
+self_modulate = Color(0.9019608, 0.4627451, 0.10980392, 1)
 mesh = SubResource("SphereMesh_007c7")
+
+[node name="PS_playerParticle" parent="MeshInstance2D" instance=ExtResource("2_ana4q")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
