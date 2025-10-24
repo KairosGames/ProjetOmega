@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://g5kdx4hqosq6"]
+[gd_scene load_steps=6 format=3 uid="uid://g5kdx4hqosq6"]
 
 [ext_resource type="PackedScene" uid="uid://dmoidibm3tpis" path="res://ProjetOmega/Prefabs/Player.tscn" id="1_70gsp"]
+[ext_resource type="Script" uid="uid://b0i80j6p8dl4e" path="res://addons/godOSC/scripts/OSCServer.gd" id="1_n4fhd"]
 [ext_resource type="PackedScene" uid="uid://dkaqv4nhnpa87" path="res://ProjetOmega/Prefabs/SoundManger.tscn" id="1_xv4q2"]
 [ext_resource type="PackedScene" uid="uid://cm1cw7hgvhp32" path="res://ProjetOmega/Prefabs/Planet.tscn" id="2_11ktj"]
 [ext_resource type="PackedScene" uid="uid://dk0xrcyrw72j2" path="res://ProjetOmega/Prefabs/Star.tscn" id="3_iou8o"]
 
 [node name="MainScene" type="Node2D"]
+
+[node name="ControllersServer" type="Node2D" parent="."]
+script = ExtResource("1_n4fhd")
+port = 9999
 
 [node name="FmodListener2D" type="FmodListener2D" parent="."]
 position = Vector2(704, 112)
