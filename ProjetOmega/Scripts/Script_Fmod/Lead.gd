@@ -11,6 +11,7 @@ var PlayChordm
 var IsLead = true
 var Count
 var Ignore = 1
+var Stopped : bool = true
 
 
 func _ready():
@@ -39,9 +40,9 @@ func _on_sound_manger_bip() -> void:
 					lead_player_intru = clock.lead_intru_p2
 				for n: int in lead_player_intru:
 					if n == PlayNote:
-						self.play()
+						if Stopped == true:
+							self.play()
 						self.set_parameter("Note", clock.Notes[PlayNote])
-						print(global_position)
 		else :
 			PlayNote = clock.Chords[increment]
 			increment += 1
@@ -49,3 +50,11 @@ func _on_sound_manger_bip() -> void:
 				increment = 0
 				self.play()
 				self.set_parameter("Note", clock.Notes[PlayNote])
+
+
+func _on_stopped() -> void:
+	self.Stopped = true
+
+
+func _on_started() -> void:
+	self.Stopped = false

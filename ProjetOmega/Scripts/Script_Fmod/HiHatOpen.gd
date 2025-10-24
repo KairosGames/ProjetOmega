@@ -1,23 +1,35 @@
 extends FmodEventEmitter2D
 
+var clock: Clock
+var player_emitter: PlayerEmitter
 var PlayNote
 var Count
-var Ignore = 4
+var Ignore = 5
+var P1 : Array[int]
+var P2 : Array[int]
+var NewParent = false
 
 func _ready():
 	pass
-	Count = Ignore - 1
-
-func _on_node_2d_bip(Notes, Scale, Chords, invertedbps) -> void:
-	await get_tree().create_timer(invertedbps).timeout
-	Count +=1
-	PlayNote = Scale.pick_random()
+	Count = Ignore
+	clock = get_parent() as Clock
 	
+func _on_sound_manger_bip() -> void:
+	
+	P1 = clock.drums_intru_p1
+	P2 = clock.drums_intru_p2
+	
+	if P1.has(clock.HiHatOpen):
+		self.reparent(clock.player1)
+		NewParent = true
+		self.global_position = get_parent().global_position
+	if P2.has(clock.HiHatOpen):
+		self.reparent(clock.player2)
+		NewParent = true
+		self.global_position = get_parent().global_position
+		
 	if Count == Ignore:
-		if Notes[PlayNote] == "None":
-			pass
-		else:
+		if NewParent == true:
 			self.play()
-			
-		await get_tree().create_timer(invertedbps).timeout
 		Count = 0
+	Count +=1
