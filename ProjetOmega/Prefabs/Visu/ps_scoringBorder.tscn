@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1fkjyyxpcw10"]
+
+[ext_resource type="Shader" uid="uid://cvr65q2u6rhlb" path="res://ProjetOmega/Shaders/sg_scoringBorder.gdshader" id="1_laotr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2b1y"]
+shader = ExtResource("1_laotr")
+shader_parameter/score_mask = 1.0
+shader_parameter/score_color = Color(0.41551143, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nx6xt"]
+
+[node name="Ps_ScoringBorder" type="MeshInstance2D"]
+material = SubResource("ShaderMaterial_r2b1y")
+scale = Vector2(2, 0.5)
+mesh = SubResource("QuadMesh_nx6xt")

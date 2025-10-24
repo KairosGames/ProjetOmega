@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqi4isfjilucy"]
+
+[sub_resource type="Curve" id="Curve_kyihr"]
+_data = [Vector2(0.0054054074, 0.98271286), 0.0, 0.0, 0, 0, Vector2(1, 0.0103058815), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vlkwm"]
+curve = SubResource("Curve_kyihr")
+
+[sub_resource type="Curve" id="Curve_gy4l8"]
+_data = [Vector2(0.0054054074, 0.9913565), 0.0, 0.13706322, 0, 0, Vector2(1, 0.058766246), -2.5634658, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kyihr"]
+curve = SubResource("Curve_gy4l8")
+
+[sub_resource type="Curve" id="Curve_vlkwm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5764628), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6rwsq"]
+curve = SubResource("Curve_vlkwm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l2tm5"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 12.0
+emission_ring_inner_radius = 5.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.8
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_6rwsq")
+color = Color(0.90103984, 0.46356142, 0.10850046, 0.6)
+alpha_curve = SubResource("CurveTexture_vlkwm")
+emission_curve = SubResource("CurveTexture_kyihr")
+turbulence_enabled = true
+turbulence_noise_strength = 10.0
+
+[node name="PS_playerParticle" type="GPUParticles2D"]
+z_index = -1
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_l2tm5")
