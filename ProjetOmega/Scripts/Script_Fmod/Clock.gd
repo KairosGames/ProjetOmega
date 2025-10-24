@@ -85,9 +85,6 @@ func give_note(player_id: String, star_type: Star.StarType) -> void:
 	if source.size() != 0:
 		player_intru.push_back(source.pop_front())
 		bpm += 10
-		print(bpm)
-		print(drums_intru_p1)
-		print(drums_intru_p2)
 
 func _Generate():
 	Chords = [I, Scale.pick_random(), Scale.pick_random(), Scale.pick_random()]
