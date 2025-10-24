@@ -25,11 +25,11 @@ player2 = NodePath("../Players/Player2")
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player1" parent="Players" node_paths=PackedStringArray("sound_manager") instance=ExtResource("1_70gsp")]
-position = Vector2(245, 211)
+position = Vector2(666, 182)
 sound_manager = NodePath("../../SoundManger")
 
 [node name="Player2" parent="Players" node_paths=PackedStringArray("sound_manager") instance=ExtResource("1_70gsp")]
-position = Vector2(552, 203)
+position = Vector2(740, 182)
 id = "J2"
 player_color = Color(2.5027991e-06, 0.6377404, 0.9303968, 1)
 sound_manager = NodePath("../../SoundManger")
@@ -37,53 +37,231 @@ sound_manager = NodePath("../../SoundManger")
 [node name="Planets" type="Node2D" parent="."]
 
 [node name="Planet" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(485, 162)
+position = Vector2(79.5, 108.5)
+radius = 17.5
 
 [node name="Planet2" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(361, 169)
+position = Vector2(140, 73)
+radius = 10.0
 
 [node name="Planet3" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(368, 68)
+position = Vector2(158.5, 148.5)
+radius = 12.5
 
 [node name="Planet4" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(484, 71)
+position = Vector2(328, 73)
+radius = 10.0
 
 [node name="Planet5" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(408, 68)
+position = Vector2(407.5, 143.5)
+radius = 17.5
+
+[node name="Planet6" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(595.5, 85.5)
+radius = 17.5
+
+[node name="Planet7" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(608, 143)
+radius = 8.0
+
+[node name="Planet8" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(682, 86)
+radius = 6.0
+
+[node name="Planet9" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(703, 151)
+radius = 10.0
+
+[node name="Planet10" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(724, 86)
+radius = 6.0
+
+[node name="Planet11" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(798, 143)
+radius = 8.0
+
+[node name="Planet12" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(810.5, 85.5)
+radius = 17.5
+
+[node name="Planet13" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(998.5, 143.5)
+radius = 17.5
+
+[node name="Planet14" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1078, 73)
+radius = 10.0
+
+[node name="Planet15" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1247.5, 148.5)
+radius = 12.5
+
+[node name="Planet16" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1266, 73)
+radius = 10.0
+
+[node name="Planet17" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1326.5, 108.5)
+radius = 17.5
 
 [node name="Stars" type="Node2D" parent="."]
 
-[node name="Star" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(407, 115)
+[node name="RedStars" type="Node2D" parent="Stars"]
 
-[node name="Star2" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(531, 106)
+[node name="Star" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(10, 17)
 type = 1
 
-[node name="Star3" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(306, 83)
+[node name="Star2" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(39, 193)
+type = 1
+
+[node name="Star3" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(219, 142)
+type = 1
+
+[node name="Star4" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(247, 7)
+type = 1
+
+[node name="Star5" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(381, 104)
+type = 1
+
+[node name="Star6" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(388, 23)
+type = 1
+
+[node name="Star7" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(561, 200)
+type = 1
+
+[node name="Star8" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(637, 16)
+type = 1
+
+[node name="Star9" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(769, 16)
+type = 1
+
+[node name="Star10" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(845, 200)
+type = 1
+
+[node name="Star11" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1018, 23)
+type = 1
+
+[node name="Star12" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1025, 104)
+type = 1
+
+[node name="Star13" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1159, 7)
+type = 1
+
+[node name="Star14" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1187, 142)
+type = 1
+
+[node name="Star15" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1367, 193)
+type = 1
+
+[node name="Star16" parent="Stars/RedStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1396, 17)
+type = 1
+
+[node name="BlueStars" type="Node2D" parent="Stars"]
+
+[node name="Star" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(125, 115)
+
+[node name="Star2" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(173, 179)
+
+[node name="Star3" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(303, 186)
+
+[node name="Star4" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(320, 56)
+
+[node name="Star5" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(471, 52)
+
+[node name="Star6" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(540, 133)
+
+[node name="Star7" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(614, 213)
+
+[node name="Star8" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(618, 94)
+
+[node name="Star9" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(788, 94)
+
+[node name="Star10" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(792, 213)
+
+[node name="Star11" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(866, 133)
+
+[node name="Star12" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(935, 52)
+
+[node name="Star13" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1086, 56)
+
+[node name="Star14" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1103, 186)
+
+[node name="Star15" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1233, 179)
+
+[node name="Star16" parent="Stars/BlueStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1281, 115)
+
+[node name="YellowStars" type="Node2D" parent="Stars"]
+
+[node name="Star" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(148, 54)
 type = 2
 
-[node name="Star4" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(321, 206)
-type = 1
-
-[node name="Star5" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(433, 34)
-type = 1
-
-[node name="Star6" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(444, 209)
-
-[node name="Star7" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(470, 124)
-
-[node name="Star8" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(339, 33)
+[node name="Star2" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(273, 100)
 type = 2
 
-[node name="Star9" parent="Stars" instance=ExtResource("3_iou8o")]
-position = Vector2(526, 48)
+[node name="Star3" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(450, 193)
+type = 2
+
+[node name="Star4" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(540, 65)
+type = 2
+
+[node name="Star5" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(672, 135)
+type = 2
+
+[node name="Star6" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(734, 135)
+type = 2
+
+[node name="Star7" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(866, 65)
+type = 2
+
+[node name="Star8" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(956, 193)
+type = 2
+
+[node name="Star9" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1133, 100)
+type = 2
+
+[node name="Star10" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
+position = Vector2(1258, 54)
 type = 2
 
 [node name="Star10" parent="Stars" instance=ExtResource("3_iou8o")]

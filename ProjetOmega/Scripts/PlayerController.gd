@@ -18,7 +18,14 @@ func _process(_delta):
 			y = target_server.incoming_messages[osc_address][1]
 
 func get_vector() -> Vector2:
-	return Vector2(x, y)
+	var vector: Vector2 = Vector2(x, y)
+	
+	if vector.x == -500:
+		vector.x = 0
+	if vector.y == -500:
+		vector.y = 0
+	
+	return vector
 
 func is_action_just_pressed() -> bool:
 	if target_server == null or not target_server.incoming_messages.has(osc_address):

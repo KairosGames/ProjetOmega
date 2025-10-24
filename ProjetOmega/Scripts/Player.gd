@@ -19,11 +19,13 @@ class_name Player extends Node2D
 @export var min_dist_on_grab: float = 5.0
 @export var gainable_speed_per_grab: float = 50.0
 @export var screen_vertical_offset: float = 32.0
+@export var grab_detection_time: float = 0.1
 
 var following_stars: Array[Star]
 var screen_size: Vector2
 var speed: Vector2
 var last_pos: Vector2
+var shoot_tween: Tween
 var actual_speed: float
 var radius: float
 var rotation_angle: float = 0.0
@@ -32,16 +34,17 @@ var dist_to_planet: float
 var min_grab_speed: float
 var max_grab_speed: float
 
+var is_stopped: bool = true
 var grabbed_planet: Planet = null
 var aim_vec: Vector2 = Vector2.ZERO
 var is_free: bool = true
 var can_shoot: bool = true
 var is_clockwise_rot: bool = true
+var is_grab_detecting: bool = false
 
 
 func _ready() -> void:
 	controller.osc_address = controller.osc_address + "/" + id.to_lower()
-	
 	mesh.self_modulate = player_color
 	actual_speed = starting_speed
 	speed = Vector2.RIGHT.rotated(randf() * TAU) * actual_speed
@@ -54,11 +57,14 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	get_inputs()
+	
+	if is_grab_detecting:
+		grapple_detect()
 
 
 func _physics_process(delta: float) -> void:
 	if is_free:
-		free_move(delta)
+		if not is_stopped: free_move(delta)
 		rotate_viewfinder()
 	else:
 		handle_grapping(delta)
@@ -69,9 +75,13 @@ func _physics_process(delta: float) -> void:
 
 func get_inputs() -> void:
 	aim_vec = controller.get_vector()
+	var get_manette: Vector2 = Input.get_vector(id + "_Aim_Left", id + "_Aim_Right", id + "_Aim_Up", id + "_Aim_Down")
+	if get_manette.length() > 0.2:
+		aim_vec = get_manette
+	
 	if aim_vec.length() <= 0.2:
 		aim_vec = Vector2.ZERO
-	if controller.is_action_just_pressed():
+	if controller.is_action_just_pressed() or Input.is_action_just_pressed(id + "_Grapple"):
 		if is_free:
 			shoot(Vector2.RIGHT.rotated(arrow.rotation))
 		else:
@@ -136,7 +146,7 @@ func shoot(aim_dir: Vector2) -> void:
 	arrow.visible = false
 	var grapple_target: Vector2 = set_grapple_target(aim_dir)
 	
-	var shoot_tween: Tween = create_tween()
+	shoot_tween = create_tween()
 	await shoot_tween.tween_method(
 		func(v: Vector2) -> void:
 			var pts = grapple.points
@@ -153,13 +163,33 @@ func shoot(aim_dir: Vector2) -> void:
 
 func set_grapple_target(aim_dir: Vector2) -> Vector2:
 	var target: Vector2 = grapple.points[0] + aim_dir * shoot_dist
+	
+	is_grab_detecting = true
+	launch_stop_grab_detection_timer()
+	
 	if raycast.is_colliding():
+		is_stopped = false
 		grabbed_planet = raycast.get_collider().get_parent() as Planet
 		var planet_to_player: Vector2 = global_position - grabbed_planet.global_position
 		target = -planet_to_player
 		set_grab_context(planet_to_player)
 		is_free = false
 	return target
+
+
+func grapple_detect() -> void:
+	if raycast.is_colliding():
+		is_stopped = false
+		grabbed_planet = raycast.get_collider().get_parent() as Planet
+		var planet_to_player: Vector2 = global_position - grabbed_planet.global_position
+		set_grab_context(planet_to_player)
+		is_free = false
+		is_grab_detecting = false
+
+
+func launch_stop_grab_detection_timer() -> void:
+	await get_tree().create_timer(grab_detection_time).timeout
+	is_grab_detecting = false
 
 
 func set_grab_context(planet_to_player: Vector2) -> void:
