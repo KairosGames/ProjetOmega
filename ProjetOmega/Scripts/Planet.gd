@@ -7,14 +7,18 @@ class_name Planet extends Node2D
 
 
 func _ready() -> void:
+	var static_coll_shape: Shape2D = static_collision_shape.shape.duplicate()
+	static_collision_shape.shape = static_coll_shape
 	if static_collision_shape.shape is CircleShape2D:
 		static_collision_shape.shape.radius = radius
+	
+	var area_coll_shape: Shape2D = area_collision_shape.shape.duplicate()
+	area_collision_shape.shape = area_coll_shape
 	if area_collision_shape.shape is CircleShape2D:
 		area_collision_shape.shape.radius = radius
 	
 	var unique_mesh: SphereMesh = mesh.mesh.duplicate(true)
 	mesh.mesh = unique_mesh
-	
 	if mesh.mesh is SphereMesh:
 		mesh.mesh.radius = radius
 		mesh.mesh.height = radius * 2
