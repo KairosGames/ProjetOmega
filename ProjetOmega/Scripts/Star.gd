@@ -8,8 +8,8 @@ enum StarType {Blue, Red, Yellow}
 @export var collider: CollisionShape2D
 
 @export var type: StarType = StarType.Blue
-@export var min_dist_to_target: float = 5.0
-@export var rotation_speed: float = 5.0
+@export var min_dist_to_target: float = 2.0
+@export var rotation_speed: float = 8.0
 
 var completing_star: Star
 var speed: float
@@ -137,16 +137,16 @@ func rectify_position() -> void:
 	var old_pos: Vector2 = global_position
 	if global_position.x < 0 - radius:
 		global_position.x = player.screen_size.x + radius
-		handle_reposition(old_pos + Vector2.LEFT * 10)
+		handle_reposition(old_pos + Vector2.LEFT * 2)
 	if global_position.x > player.screen_size.x + radius:
 		global_position.x = 0 - radius
-		handle_reposition(old_pos + Vector2.RIGHT * 10)
+		handle_reposition(old_pos + Vector2.RIGHT * 2)
 	if global_position.y < 0 - radius:
 		global_position.y = player.screen_size.y + radius
-		handle_reposition(old_pos + Vector2.UP * 10)
+		handle_reposition(old_pos + Vector2.UP * 2)
 	if global_position.y > player.screen_size.y + radius:
 		global_position.y = 0 - radius
-		handle_reposition(old_pos + Vector2.DOWN * 10)
+		handle_reposition(old_pos + Vector2.DOWN * 2)
 
 
 func handle_reposition(old_pos: Vector2) -> void:

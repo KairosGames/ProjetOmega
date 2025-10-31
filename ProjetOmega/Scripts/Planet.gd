@@ -5,6 +5,9 @@ class_name Planet extends Node2D
 @export var area_collision_shape: CollisionShape2D
 @export var mesh: MeshInstance2D
 @export var radius: float = 7.0
+@export var bounce_ratio: float = 1.3
+
+var bounce_tween: Tween
 
 
 func _ready() -> void:
@@ -32,6 +35,32 @@ func _ready() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.get_parent() is Player:	
-		var player = body.get_parent() as Player
-		player.change_dir(player.speed.normalized().bounce((player.global_position - global_position).normalized()))
+	if body.get_parent() is not Player:
+		return
+	
+	play_bounce_effect()
+	var player: Player = body.get_parent() as Player
+	var delta: Vector2 = player.global_position - global_position
+	var dist: float = delta.length()
+	var normal: Vector2 = delta.normalized()
+	var overlap: float = (radius + player.radius) - dist
+	
+	if overlap > 0.0:
+		player.global_position += normal * (overlap + 0.5)
+	
+	var speed: Vector2 = player.speed
+	if speed.dot(normal) < 0.0:
+		speed = speed.bounce(normal)
+		player.change_dir(speed.normalized())
+	else:
+		player.change_dir(speed.normalized())
+
+
+func play_bounce_effect() -> void:
+	bounce_tween = create_tween()
+	mesh.scale *= bounce_ratio
+	bounce_tween.tween_property(
+		self,
+		"mesh:scale",
+		Vector2.ONE,
+		0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)

@@ -2,6 +2,7 @@ class_name FakeTarget extends Marker2D
 
 var following_stars: Array[Star]
 var is_used: bool = false
+var radius: float = 0.0
 
 
 func followed_by(star: Star) -> void:

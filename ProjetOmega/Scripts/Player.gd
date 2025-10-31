@@ -95,6 +95,7 @@ func free_move(delta: float) -> void:
 func change_dir(normalized_dir: Vector2) -> void:
 	if is_free:
 		speed = normalized_dir * actual_speed
+		global_position += speed.normalized() * 4.0
 	else:
 		is_clockwise_rot = !is_clockwise_rot
 
@@ -129,16 +130,16 @@ func rectify_position() -> void:
 	var old_pos: Vector2 = global_position
 	if global_position.x < 0 - radius:
 		global_position.x = screen_size.x + radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.LEFT * 2)
 	if global_position.x > screen_size.x + radius:
 		global_position.x = 0 - radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.RIGHT * 2)
 	if global_position.y < 0 - radius:
 		global_position.y = screen_size.y + radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.UP * 2)
 	if global_position.y > screen_size.y + radius:
 		global_position.y = 0 - radius
-		handle_reposition(old_pos)
+		handle_reposition(old_pos + Vector2.DOWN * 2)
 
 
 func shoot(aim_dir: Vector2) -> void:
@@ -195,7 +196,7 @@ func launch_stop_grab_detection_timer() -> void:
 func set_grab_context(planet_to_player: Vector2) -> void:
 	rotation_angle = planet_to_player.angle()
 	is_clockwise_rot = true if planet_to_player.cross(speed) < 0 else false
-	first_dist_to_planet = planet_to_player.length()
+	first_dist_to_planet = planet_to_player.length() if planet_to_player.length() >= min_dist_on_grab else min_dist_on_grab
 	dist_to_planet = first_dist_to_planet
 	var ratio = (dist_to_planet - grabbed_planet.radius - radius - min_dist_on_grab) / (shoot_dist - grabbed_planet.radius - radius - min_dist_on_grab)
 	if ratio < 0 : ratio = 0.0

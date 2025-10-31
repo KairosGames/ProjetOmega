@@ -38,76 +38,6 @@ id = "J2"
 player_color = Color(2.5027991e-06, 0.6377404, 0.9303968, 1)
 sound_manager = NodePath("../../SoundManger")
 
-[node name="Planets" type="Node2D" parent="."]
-
-[node name="Planet" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(79.5, 108.5)
-radius = 17.5
-
-[node name="Planet2" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(140, 73)
-radius = 10.0
-
-[node name="Planet3" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(158.5, 148.5)
-radius = 12.5
-
-[node name="Planet4" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(328, 73)
-radius = 10.0
-
-[node name="Planet5" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(407.5, 143.5)
-radius = 17.5
-
-[node name="Planet6" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(595.5, 85.5)
-radius = 17.5
-
-[node name="Planet7" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(608, 143)
-radius = 8.0
-
-[node name="Planet8" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(682, 86)
-radius = 6.0
-
-[node name="Planet9" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(703, 151)
-radius = 10.0
-
-[node name="Planet10" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(724, 86)
-radius = 6.0
-
-[node name="Planet11" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(798, 143)
-radius = 8.0
-
-[node name="Planet12" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(810.5, 85.5)
-radius = 17.5
-
-[node name="Planet13" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(998.5, 143.5)
-radius = 17.5
-
-[node name="Planet14" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(1078, 73)
-radius = 10.0
-
-[node name="Planet15" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(1247.5, 148.5)
-radius = 12.5
-
-[node name="Planet16" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(1266, 73)
-radius = 10.0
-
-[node name="Planet17" parent="Planets" instance=ExtResource("2_11ktj")]
-position = Vector2(1326.5, 108.5)
-radius = 17.5
-
 [node name="Stars" type="Node2D" parent="."]
 
 [node name="RedStars" type="Node2D" parent="Stars"]
@@ -267,3 +197,73 @@ type = 2
 [node name="Star10" parent="Stars/YellowStars" instance=ExtResource("3_iou8o")]
 position = Vector2(1258, 54)
 type = 2
+
+[node name="Planets" type="Node2D" parent="."]
+
+[node name="Planet" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(79.5, 108.5)
+radius = 17.5
+
+[node name="Planet2" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(140, 73)
+radius = 10.0
+
+[node name="Planet3" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(158.5, 148.5)
+radius = 12.5
+
+[node name="Planet4" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(328, 73)
+radius = 10.0
+
+[node name="Planet5" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(407.5, 143.5)
+radius = 17.5
+
+[node name="Planet6" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(595.5, 85.5)
+radius = 17.5
+
+[node name="Planet7" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(608, 143)
+radius = 8.0
+
+[node name="Planet8" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(682, 86)
+radius = 6.0
+
+[node name="Planet9" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(703, 151)
+radius = 10.0
+
+[node name="Planet10" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(724, 86)
+radius = 6.0
+
+[node name="Planet11" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(798, 143)
+radius = 8.0
+
+[node name="Planet12" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(810.5, 85.5)
+radius = 17.5
+
+[node name="Planet13" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(998.5, 143.5)
+radius = 17.5
+
+[node name="Planet14" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1078, 73)
+radius = 10.0
+
+[node name="Planet15" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1247.5, 148.5)
+radius = 12.5
+
+[node name="Planet16" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1266, 73)
+radius = 10.0
+
+[node name="Planet17" parent="Planets" instance=ExtResource("2_11ktj")]
+position = Vector2(1326.5, 108.5)
+radius = 17.5
