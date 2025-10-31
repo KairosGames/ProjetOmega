@@ -5,7 +5,7 @@ class_name Planet extends Node2D
 @export var area_collision_shape: CollisionShape2D
 @export var mesh: MeshInstance2D
 @export var radius: float = 7.0
-@export var bounce_ratio: float = 1.3
+@export var bounce_ratio: float = 1.2
 
 var bounce_tween: Tween
 
@@ -31,7 +31,6 @@ func _ready() -> void:
 	if ratio > 1.5:
 		ratio *= 0.8
 	particles.global_scale = Vector2(ratio, ratio)
-	
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -63,4 +62,4 @@ func play_bounce_effect() -> void:
 		self,
 		"mesh:scale",
 		Vector2.ONE,
-		0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+		0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
